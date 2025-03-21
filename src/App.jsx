@@ -5,6 +5,7 @@ function App() {
   const [data, setData] = useState([]);
   const [equipment, setEquipment] = useState('');
   const [position, setPosition] = useState('1');
+  const [notes, setNotes] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -13,11 +14,13 @@ function App() {
       id: equipment,
       equipment: equipment,
       position: position,
+      notes: notes,
     };
 
     setData((prevData) => [...prevData, newEntry]);
     console.log(equipment);
     console.log(position);
+    console.log(notes);
     setEquipment('');
   }
 
@@ -29,8 +32,9 @@ function App() {
       <ul>
         {data.map((item) => (
           <li key={item.equipment}>
-            <p>{item.equipment}</p>
-            <p>{item.position}</p>
+            <p>Equipment: {item.equipment}</p>
+            <p>Position: {item.position}</p>
+            <p>Notes: {item.notes}</p>
           </li>
         ))}
       </ul>
@@ -48,6 +52,12 @@ function App() {
           placeholder="Equipment number"
           value={equipment}
           onChange={(e) => setEquipment(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Notes"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
         />
         <button>Submit</button>
       </form>
